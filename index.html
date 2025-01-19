@@ -7,36 +7,37 @@
     <link rel='stylesheet' href="style.css">
 </head>
 <body>
-
-    <div class="calculator" name="calculator">
-        <div class="table" name="table"></div>
-        <div class="btn" name="buttons">
-            <button class="b" name="percent">%</button>
-            <button class="b" name="CE">CE</button>
-            <button class="b" name="C">C</button>
-            <button class="b" name="del">←</button>
-            <button class="b" name="radical">√x</button>
-            <button class="b" name="square">x²</button>
-            <button class="b" name="reverse">⅟x</button>
-            <button class="b" name="division">/</button>
-            <button class="b" name="seven">7</button>
-            <button class="b" name="eight">8</button>
-            <button class="b" name="nine">9</button>
-            <button class="b" name="multiply">*</button>
-            <button class="b" name="four">4</button>
-            <button class="b" name="fife">5</button>
-            <button class="b" name="six">6</button>
-            <button class="b" name="minus">-</button>
-            <button class="b" name="one">1</button>
-            <button class="b" name="two">2</button>
-            <button class="b" name="tree">3</button>
-            <button class="b" name="plus">+</button>
-            <button class="b" name="sign_toggle">+/-</button>
-            <button class="b" name="nul">0</button>
-            <button class="b" name="comma">,</button>
-            <button class="b" name="equal">=</button>
+    <div class="calculator">
+        <input type="text" class="table" id="table" disabled/>
+        <div class="btn">
+            <button class="b" onclick="calculatePercentage()">%</button>
+            <button class="b" onclick="clearEntry()">CE</button>
+            <button class="b" onclick="clearTable()">C</button>
+            <button class="b" onclick="deleteLast()">←</button>
+            <button class="b" onclick="sqrt()">√x</button>
+            <button class="b" onclick="square()">x²</button>
+            <button class="b" onclick="inverse()">⅟x</button>
+            <button class="b" onclick="appendOperator('/')">/</button>
+            <button class="b" onclick="appendNumber('7')">7</button>
+            <button class="b" onclick="appendNumber('8')">8</button>
+            <button class="b" onclick="appendNumber('9')">9</button>
+            <button class="b" onclick="appendOperator('*')">*</button>
+            <button class="b" onclick="appendNumber('4')">4</button>
+            <button class="b" onclick="appendNumber('5')">5</button>
+            <button class="b" onclick="appendNumber('6')">6</button>
+            <button class="b" onclick="appendOperator('-')">-</button>
+            <button class="b" onclick="appendNumber('1')">1</button>
+            <button class="b" onclick="appendNumber('2')">2</button>
+            <button class="b" onclick="appendNumber('3')">3</button>
+            <button class="b" onclick="appendOperator('+')">+</button>
+            <button class="b" onclick="toggleSing('+/-')">+/-</button>
+            <button class="b" onclick="appendNumber('0')">0</button>
+            <button class="b" onclick="appendNumber(',')">,</button>
+            <button class="b" onclick="calculateResult()">=</button>
         </div>
     </div>
-    <script src="index.js"></script>
+    <script src="index.js">
+        
+    </script>
 </body>
 </html>

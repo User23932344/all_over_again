@@ -1,53 +1,98 @@
 const table = document.getElementById('table');
+let currentValue = '';
+let previousValue = '';  // Исправлено на правильное название переменной
+let operator = '';
+let resultCalculated = false;  // Исправлено на правильное название переменной
 
 function appendNumber(number) {
-    table.value += number;
-}
-
-function appendOperator(operator) {
-    if (table.value !== '' && !isNaN(table.value.slice(-1))) {
-        table.value += operator;
+    if (resultCalculated) {
+        currentValue = '';
+        resultCalculated = false;
     }
+    currentValue += number;
+    table.value = currentValue;
 }
 
-function toggleSing() {
-    table.value = table.value * -1;
+function appendOperator(op) {
+    if (currentValue === '') {
+        return;
+    }
+    if (previousValue !== '') {
+        calculateResult();
+    }
+    operator = op;
+    previousValue = currentValue;
+    currentValue = '';
+}
+
+function toggleSign() {
+    currentValue = (parseFloat(currentValue) * -1).toString();
+    table.value = currentValue;
 }
 
 function sqrt() {
-    table.value = (Math.pow(parseFloat(table.value), 1 / 2)).toString();
+    currentValue = (Math.pow(parseFloat(currentValue), 1/2)).toString();
+    table.value = currentValue;
 }
 
 function square() {
-    table.value *= (parseFloat(table.value)).toString();
+    currentValue = (Math.pow(parseFloat(currentValue), 2)).toString();
+    table.value = currentValue;
 }
 
 function inverse() {
-    table.value = (1 / parseFloat(table.value)).toString();
+    currentValue = (1 / parseFloat(currentValue)).toString();
+    table.value = currentValue;
 }
 
 function calculatePercentage() {
-    table.value = (parseFloat(table.value) / 100).toString();
+    currentValue = (parseFloat(currentValue) / 100).toString();
+    table.value = currentValue;
 }
 
 
 //---------------------------------------------------------
 function clearTable() {
+    currentValue = '';
+    operator = '';
+    previousValue = '';  // Исправлено на правильное название переменной
     table.value = '';
 }
 
 function clearEntry() {
-    table.value = table.value.slice(0, table.value.lastIndexOf(' ') + 1);
+    currentValue = '';
+    table.value = '';
 }
 
 function deleteLast() {
-    table.value = table.value.slice(0, -1);
+    currentValue = currentValue.slice(0, -1);
+    table.value = currentValue;
 }
 //---------------------------------------------------------
 function calculateResult() {
-    try {
-        table.value = eval(table.value);
-    } catch {
-        table.value = 'Error';
+    if (previousValue === '' || currentValue === '') return;
+    let result;
+    const prev = parseFloat(previousValue);
+    const current = parseFloat(currentValue);
+    switch (operator) {
+        case '+':
+            result = prev + current;
+            break;
+        case '-':
+            result = prev - current;
+            break;
+        case '*':
+            result = prev * current;
+            break;
+        case '/':
+            result = current !== 0 ? prev / current : 'Error';
+            break;
+        default:
+            return;
     }
+    table.value = result;
+    currentValue = result.toString();
+    previousValue = '';
+    operator = '';
+    resultCalculated = true;
 }
